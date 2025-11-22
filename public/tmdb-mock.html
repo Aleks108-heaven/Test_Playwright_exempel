@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Movie Database</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #003d82;
+        }
+        .search-btn {
+            padding: 10px 20px;
+            background-color: #003d82;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .movie {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .movie-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #032541;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-clamp: 2; /* Standard property for compatibility */
+            overflow: hidden;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <h1>The Movie Database</h1>
+    <button class="search-btn">Search Movies</button>
+    <div class="movie-list">
+        <div class="movie">The Shawshank Redemption</div>
+        <div class="movie">The Dark Knight</div>
+        <div class="movie">Inception</div>
+    </div>
+</body>
+</html>

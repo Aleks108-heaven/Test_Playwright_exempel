@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheMovieDB - Discover Movies & TV Shows</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #ffffff;
+            color: #032541;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 1.25rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #01b4e4;
+            flex-shrink: 0;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 450px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            color: #032541;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #01b4e4;
+            background: #fff;
+            box-shadow: 0 0 0 2px rgba(1, 180, 228, 0.1);
+        }
+
+        .search-input::placeholder {
+            color: #999;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #032541;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover {
+            color: #01b4e4;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #01b4e4 0%, #0e7c86 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 1rem;
+            margin: 3rem 0 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.625rem 1.25rem;
+            background: #f5f5f5;
+            border: 2px solid #e0e0e0;
+            border-radius: 20px;
+            color: #032541;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #01b4e4;
+            border-color: #01b4e4;
+            color: white;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 3rem 0 1.5rem;
+            color: #032541;
+        }
+
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .movie-card {
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid #e0e0e0;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+            border-color: #01b4e4;
+        }
+
+        .movie-poster {
+            width: 100%;
+            aspect-ratio: 2/3;
+            background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .movie-poster::before {
+            content: '🎬';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            opacity: 0.2;
+        }
+
+        .movie-info {
+            padding: 1rem;
+        }
+
+        .movie-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #032541;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-clamp: 2;  /* Add this line for standard compatibility */
+            overflow: hidden;
+            line-height: 1.4;
+        }
+
+        .movie-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: #f9a825;
+            font-weight: 600;
+        }
+
+        .year {
+            color: #999;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            background: #01b4e4;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .footer {
+            background: #032541;
+            color: #f0f0f0;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            color: #f0f0f0;
+            font-weight: 600;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .footer-section a:hover {
+            color: #01b4e4;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .search-bar {
+                max-width: 100%;
+            }
+
+            .movies-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">TheMovieDB</div>
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="Search for a movie, TV show, person...">
+                </div>
+                <div class="nav-links">
+                    <a href="#" class="nav-link">Movies</a>
+                    <a href="#" class="nav-link">TV Shows</a>
+                    <a href="#" class="nav-link">People</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>The Movie Database</h1>
+                <p>Explore thousands of movies, from timeless classics to the latest blockbusters</p>
+                <button class="primary-btn search-btn">Search Movies</button>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="filter-bar">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Action</button>
+                <button class="filter-btn">Comedy</button>
+                <button class="filter-btn">Drama</button>
+                <button class="filter-btn">Sci-Fi</button>
+                <button class="filter-btn">Thriller</button>
+                <button class="filter-btn">Horror</button>
+            </div>
+
+            <h2 class="section-title">Trending Now</h2>
+            <div class="movies-grid">
+                <div class="movie-card">
+                    <div class="movie-poster"><img src="/assets/posters/inception.jpg" alt="Movie Poster" loading="lazy"></div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Inception</h3><!--POSTER:inception-->
+                        <div class="movie-meta">
+                            <span class="rating">★ 8.7</span>
+                            <span class="year">2024</span>
+                        </div>
+                        <span class="badge">Sci-Fi</span>
+                    </div>
+                </div>
+
+                <div class="movie-card">
+                    <div class="movie-poster"><img src="/assets/posters/the-last-symphony.jpg" alt="Movie Poster" loading="lazy"></div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">The Last Symphony</h3><!--POSTER:the-last-symphony-->
+                        <div class="movie-meta">
+                            <span class="rating">★ 9.2</span>
+                            <span class="year">2024</span>
+                        </div>
+                        <span class="badge">Drama</span>
+                    </div>
+                </div>
+
+                <div class="movie-card">
+                    <div class="movie-poster"><img src="/assets/posters/shadow-protocol.jpg" alt="Movie Poster" loading="lazy"></div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Shadow Protocol</h3><!--POSTER:shadow-protocol-->
+                        <div class="movie-meta">
+                            <span class="rating">★ 8.4</span>
+                            <span class="year">2024</span>
+                        </div>
+                        <span class="badge">Action</span>
+                    </div>
+                </div>
+
+                <div class="movie-card">
+                    <div class="movie-poster"><img src="/assets/posters/midnight-laughter.jpg" alt="Movie Poster" loading="lazy"></div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Midnight Laughter</h3><!--POSTER:midnight-laughter-->
+                        <div class="movie-meta">
+                            <span class="rating">★ 7.9</span>
+                            <span class="year">2023</span>
+                        </div>
+                        <span class="badge">Comedy</span>
+                    </div>
+                </div>
+
+                <div class="movie-card">
+                    <div class="movie-poster"><img src="/assets/posters/echoes-of-tomorrow.jpg" alt="Movie Poster" loading="lazy"></div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Echoes of Tomorrow</h3><!--POSTER:echoes-of-tomorrow-->
+                        <div class="movie-meta">
+                            <span class="rating">★ 8.8</span>
+                            <span class="year">2024</span>
+                        </div>
+                        <span class="badge">Thriller</span>
+                    </div>
+                </div>
+
+                <div class="movie-card">
+                    <div class="movie-poster"><img src="/assets/posters/crimson-peak-rising.jpg" alt="Movie Poster" loading="lazy"></div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Crimson Peak Rising</h3><!--POSTER:crimson-peak-rising-->
+                        <div class="movie-meta">
+                            <span class="rating">★ 7.6</span>
+                            <span class="year">2023</span>
+                        </div>
+                        <span class="badge">Horror</span>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Highly Rated</h2>
+            <div class="movies-grid">
+                <div class="movie-card">
+                    <div class="movie-poster"><img src="/assets/posters/the-eternal-journey.jpg" alt="Movie Poster" loading="lazy"></div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">The Eternal Journey</h3><!--POSTER:the-eternal-journey-->
+                        <div class="movie-meta">
+                            <span class="rating">★ 9.5</span>
+                            <span class="year">2022</span>
+                        </div>
+                        <span class="badge">Drama</span>
+                    </div>
+                </div>
+
+                <div class="movie-card">
+                    <div class="movie-poster"><img src="/assets/posters/velocity-rush.jpg" alt="Movie Poster" loading="lazy"></div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Velocity Rush</h3><!--POSTER:velocity-rush-->
+                        <div class="movie-meta">
+                            <span class="rating">★ 9.1</span>
+                            <span class="year">2023</span>
+                        </div>
+                        <span class="badge">Action</span>
+                    </div>
+                </div>
+
+                <div class="movie-card">
+                    <div class="movie-poster"><img src="/assets/posters/parallel-worlds.jpg" alt="Movie Poster" loading="lazy"></div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Parallel Worlds</h3><!--POSTER:parallel-worlds-->
+                        <div class="movie-meta">
+                            <span class="rating">★ 9.3</span>
+                            <span class="year">2023</span>
+                        </div>
+                        <span class="badge">Sci-Fi</span>
+                    </div>
+                </div>
+
+                <div class="movie-card">
+                    <div class="movie-poster"><img src="/assets/posters/beyond-the-horizon.jpg" alt="Movie Poster" loading="lazy"></div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Beyond the Horizon</h3><!--POSTER:beyond-the-horizon-->
+                        <div class="movie-meta">
+                            <span class="rating">★ 8.9</span>
+                            <span class="year">2022</span>
+                        </div>
+                        <span class="badge">Adventure</span>
+                    </div>
+                </div>
+
+                <div class="movie-card">
+                    <div class="movie-poster"><img src="/assets/posters/silent-witness.jpg" alt="Movie Poster" loading="lazy"></div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Silent Witness</h3><!--POSTER:silent-witness-->
+                        <div class="movie-meta">
+                            <span class="rating">★ 9.0</span>
+                            <span class="year">2023</span>
+                        </div>
+                        <span class="badge">Thriller</span>
+                    </div>
+                </div>
+
+                <div class="movie-card">
+                    <div class="movie-poster"><img src="/assets/posters/hearts-unbound.jpg" alt="Movie Poster" loading="lazy"></div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Hearts Unbound</h3><!--POSTER:hearts-unbound-->
+                        <div class="movie-meta">
+                            <span class="rating">★ 8.7</span>
+                            <span class="year">2024</span>
+                        </div>
+                        <span class="badge">Romance</span>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Popular This Week</h2>
+            <div class="movies-grid">
+                <div class="movie-card">
+                    <div class="movie-poster"><img src="/assets/posters/neon-nights.jpg" alt="Movie Poster" loading="lazy"></div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Neon Nights</h3><!--POSTER:neon-nights-->
+                        <div class="movie-meta">
+                            <span class="rating">★ 8.3</span>
+                            <span class="year">2024</span>
+                        </div>
+                        <span class="badge">Thriller</span>
+                    </div>
+                </div>
+
+                <div class="movie-card">
+                    <div class="movie-poster"><img src="/assets/posters/the-lost-kingdom.jpg" alt="Movie Poster" loading="lazy"></div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">The Lost Kingdom</h3><!--POSTER:the-lost-kingdom-->
+                        <div class="movie-meta">
+                            <span class="rating">★ 8.6</span>
+                            <span class="year">2024</span>
+                        </div>
+                        <span class="badge">Adventure</span>
+                    </div>
+                </div>
+
+                <div class="movie-card">
+                    <div class="movie-poster"><img src="/assets/posters/cosmic-dreams.jpg" alt="Movie Poster" loading="lazy"></div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Cosmic Dreams</h3><!--POSTER:cosmic-dreams-->
+                        <div class="movie-meta">
+                            <span class="rating">★ 8.5</span>
+                            <span class="year">2024</span>
+                        </div>
+                        <span class="badge">Sci-Fi</span>
+                    </div>
+                </div>
+
+                <div class="movie-card">
+                    <div class="movie-poster"><img src="/assets/posters/laughter-lines.jpg" alt="Movie Poster" loading="lazy"></div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Laughter Lines</h3><!--POSTER:laughter-lines-->
+                        <div class="movie-meta">
+                            <span class="rating">★ 7.8</span>
+                            <span class="year">2024</span>
+                        </div>
+                        <span class="badge">Comedy</span>
+                    </div>
+                </div>
+
+                <div class="movie-card">
+                    <div class="movie-poster"><img src="/assets/posters/winters-cry.jpg" alt="Movie Poster" loading="lazy"></div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Winter's Cry</h3><!--POSTER:winters-cry-->
+                        <div class="movie-meta">
+                            <span class="rating">★ 8.2</span>
+                            <span class="year">2024</span>
+                        </div>
+                        <span class="badge">Drama</span>
+                    </div>
+                </div>
+
+                <div class="movie-card">
+                    <div class="movie-poster"><img src="/assets/posters/dark-secrets.jpg" alt="Movie Poster" loading="lazy"></div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Dark Secrets</h3><!--POSTER:dark-secrets-->
+                        <div class="movie-meta">
+                            <span class="rating">★ 7.5</span>
+                            <span class="year">2023</span>
+                        </div>
+                        <span class="badge">Horror</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">About TheMovieDB</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="#">Guidelines</a></li>
+                        <li><a href="#">Discussions</a></li>
+                        <li><a href="#">Leaderboard</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">API License</a></li>
+                        <li><a href="#">Attributions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Features</h3>
+                    <ul>
+                        <li><a href="#">Watchlist</a></li>
+                        <li><a href="#">Custom Lists</a></li>
+                        <li><a href="#">Reviews</a></li>
+                        <li><a href="#">Ratings</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TheMovieDB. This is a mock page for local testing.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.movie-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.movie-title').textContent;
+                alert(`You clicked on: ${title}\n\nThis is a mock page - you can integrate with real movie data APIs!`);
+            });
+        });
+
+        const searchInput = document.querySelector('.search-input');
+        searchInput.addEventListener('input', function(e) {
+            console.log('Searching for:', e.target.value);
+        });
+    </script>
+</body>
+</html>
