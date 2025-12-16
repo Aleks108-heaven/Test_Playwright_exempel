@@ -59,6 +59,13 @@
         "timestamp": "2025-12-16T12:29:13.937Z",
         "skipped": false,
         "retry": 0
+      },
+      {
+        "passed": true,
+        "duration": 931,
+        "timestamp": "2025-12-16T15:41:17.000Z",
+        "skipped": false,
+        "retry": 0
       }
     ],
     "tmdb.spec.ts::test TMDB mock page": [
@@ -213,18 +220,6 @@
   },
   "summaries": [
     {
-      "runId": "run-1765885819408",
-      "timestamp": "2025-12-16T11:50:19.408Z",
-      "total": 1,
-      "passed": 1,
-      "failed": 0,
-      "skipped": 0,
-      "flaky": 0,
-      "slow": 0,
-      "duration": 1442,
-      "passRate": 100
-    },
-    {
       "runId": "run-1765887953344",
       "timestamp": "2025-12-16T12:25:53.344Z",
       "total": 1,
@@ -330,6 +325,18 @@
       "flaky": 0,
       "slow": 0,
       "duration": 953,
+      "passRate": 100
+    },
+    {
+      "runId": "run-1765899672346",
+      "timestamp": "2025-12-16T15:41:12.346Z",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "slow": 0,
+      "duration": 4654,
       "passRate": 100
     }
   ]
