@@ -1,0 +1,336 @@
+{
+  "runs": [],
+  "tests": {
+    "tmdb.spec.ts::click search button": [
+      {
+        "passed": true,
+        "duration": 874,
+        "timestamp": "2025-12-16T11:47:01.007Z",
+        "skipped": false,
+        "retry": 0
+      },
+      {
+        "passed": true,
+        "duration": 630,
+        "timestamp": "2025-12-16T11:50:20.851Z",
+        "skipped": false,
+        "retry": 0
+      },
+      {
+        "passed": true,
+        "duration": 932,
+        "timestamp": "2025-12-16T12:25:55.255Z",
+        "skipped": false,
+        "retry": 0
+      },
+      {
+        "passed": true,
+        "duration": 864,
+        "timestamp": "2025-12-16T12:28:58.543Z",
+        "skipped": false,
+        "retry": 0
+      },
+      {
+        "passed": true,
+        "duration": 800,
+        "timestamp": "2025-12-16T12:29:13.937Z",
+        "skipped": false,
+        "retry": 0
+      },
+      {
+        "passed": true,
+        "duration": 250,
+        "timestamp": "2025-12-16T12:33:14.111Z",
+        "skipped": false,
+        "retry": 0
+      }
+    ],
+    "test-agent.spec.ts::test local app": [
+      {
+        "passed": true,
+        "duration": 1498,
+        "timestamp": "2025-12-16T12:28:58.543Z",
+        "skipped": false,
+        "retry": 0
+      },
+      {
+        "passed": true,
+        "duration": 1332,
+        "timestamp": "2025-12-16T12:29:13.937Z",
+        "skipped": false,
+        "retry": 0
+      }
+    ],
+    "tmdb.spec.ts::test TMDB mock page": [
+      {
+        "passed": true,
+        "duration": 1526,
+        "timestamp": "2025-12-16T12:28:58.543Z",
+        "skipped": false,
+        "retry": 0
+      },
+      {
+        "passed": true,
+        "duration": 1332,
+        "timestamp": "2025-12-16T12:29:13.937Z",
+        "skipped": false,
+        "retry": 0
+      }
+    ],
+    "tmdb.spec.ts::verify movie posters load": [
+      {
+        "passed": true,
+        "duration": 775,
+        "timestamp": "2025-12-16T12:28:58.543Z",
+        "skipped": false,
+        "retry": 0
+      },
+      {
+        "passed": true,
+        "duration": 686,
+        "timestamp": "2025-12-16T12:29:13.937Z",
+        "skipped": false,
+        "retry": 0
+      },
+      {
+        "passed": true,
+        "duration": 268,
+        "timestamp": "2025-12-16T12:33:21.350Z",
+        "skipped": false,
+        "retry": 0
+      }
+    ],
+    "example.spec.ts::has title": [
+      {
+        "passed": true,
+        "duration": 2318,
+        "timestamp": "2025-12-16T12:28:58.543Z",
+        "skipped": false,
+        "retry": 0
+      },
+      {
+        "passed": true,
+        "duration": 2120,
+        "timestamp": "2025-12-16T12:29:13.937Z",
+        "skipped": false,
+        "retry": 0
+      }
+    ],
+    "example.spec.ts::get started link": [
+      {
+        "passed": true,
+        "duration": 2857,
+        "timestamp": "2025-12-16T12:28:58.543Z",
+        "skipped": false,
+        "retry": 0
+      },
+      {
+        "passed": true,
+        "duration": 2522,
+        "timestamp": "2025-12-16T12:29:13.937Z",
+        "skipped": false,
+        "retry": 0
+      }
+    ],
+    "tmdb.spec.ts::check poster image sources": [
+      {
+        "passed": true,
+        "duration": 646,
+        "timestamp": "2025-12-16T12:28:58.543Z",
+        "skipped": false,
+        "retry": 0
+      },
+      {
+        "passed": true,
+        "duration": 546,
+        "timestamp": "2025-12-16T12:29:13.937Z",
+        "skipped": false,
+        "retry": 0
+      },
+      {
+        "passed": true,
+        "duration": 184,
+        "timestamp": "2025-12-16T12:33:28.456Z",
+        "skipped": false,
+        "retry": 0
+      }
+    ],
+    "tmdb.spec.ts::verify poster dimensions": [
+      {
+        "passed": true,
+        "duration": 687,
+        "timestamp": "2025-12-16T12:28:58.543Z",
+        "skipped": false,
+        "retry": 0
+      },
+      {
+        "passed": true,
+        "duration": 577,
+        "timestamp": "2025-12-16T12:29:13.937Z",
+        "skipped": false,
+        "retry": 0
+      },
+      {
+        "passed": true,
+        "duration": 248,
+        "timestamp": "2025-12-16T12:33:49.742Z",
+        "skipped": false,
+        "retry": 0
+      }
+    ],
+    "tmdb.spec.ts::verify each movie card has a poster": [
+      {
+        "passed": false,
+        "duration": 5898,
+        "timestamp": "2025-12-16T12:28:58.543Z",
+        "skipped": false,
+        "retry": 0
+      },
+      {
+        "passed": false,
+        "duration": 5762,
+        "timestamp": "2025-12-16T12:29:13.937Z",
+        "skipped": false,
+        "retry": 0
+      },
+      {
+        "passed": true,
+        "duration": 319,
+        "timestamp": "2025-12-16T12:33:42.228Z",
+        "skipped": false,
+        "retry": 0
+      }
+    ],
+    "tmdb.spec.ts::verify poster element exists": [
+      {
+        "passed": true,
+        "duration": 171,
+        "timestamp": "2025-12-16T12:33:58.442Z",
+        "skipped": false,
+        "retry": 0
+      }
+    ]
+  },
+  "summaries": [
+    {
+      "runId": "run-1765885819408",
+      "timestamp": "2025-12-16T11:50:19.408Z",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "slow": 0,
+      "duration": 1442,
+      "passRate": 100
+    },
+    {
+      "runId": "run-1765887953344",
+      "timestamp": "2025-12-16T12:25:53.344Z",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "slow": 1,
+      "duration": 1911,
+      "passRate": 100
+    },
+    {
+      "runId": "run-1765888128724",
+      "timestamp": "2025-12-16T12:28:48.724Z",
+      "total": 9,
+      "passed": 8,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 0,
+      "slow": 0,
+      "duration": 9818,
+      "passRate": 89
+    },
+    {
+      "runId": "run-1765888144545",
+      "timestamp": "2025-12-16T12:29:04.545Z",
+      "total": 9,
+      "passed": 8,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 1,
+      "slow": 0,
+      "duration": 9391,
+      "passRate": 89
+    },
+    {
+      "runId": "run-1765888393272",
+      "timestamp": "2025-12-16T12:33:13.272Z",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "slow": 0,
+      "duration": 839,
+      "passRate": 100
+    },
+    {
+      "runId": "run-1765888400436",
+      "timestamp": "2025-12-16T12:33:20.436Z",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "slow": 0,
+      "duration": 914,
+      "passRate": 100
+    },
+    {
+      "runId": "run-1765888407381",
+      "timestamp": "2025-12-16T12:33:27.381Z",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "slow": 0,
+      "duration": 1075,
+      "passRate": 100
+    },
+    {
+      "runId": "run-1765888421339",
+      "timestamp": "2025-12-16T12:33:41.339Z",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 1,
+      "slow": 0,
+      "duration": 889,
+      "passRate": 100
+    },
+    {
+      "runId": "run-1765888428846",
+      "timestamp": "2025-12-16T12:33:48.846Z",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "slow": 0,
+      "duration": 896,
+      "passRate": 100
+    },
+    {
+      "runId": "run-1765888437489",
+      "timestamp": "2025-12-16T12:33:57.489Z",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "slow": 0,
+      "duration": 953,
+      "passRate": 100
+    }
+  ]
+}
